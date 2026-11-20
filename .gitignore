@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+# report generati dalle tue scansioni (non pubblicarli per sbaglio)
+*.html
+!example/*.html

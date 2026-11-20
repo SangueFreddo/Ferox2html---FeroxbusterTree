@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feroxbuster – http://10.10.10.5</title>
+<style>
+  :root{--bg:#0f1117;--panel:#171a23;--line:#262b38;--txt:#d7dbe6;--mut:#8a91a5;
+        --acc:#4f9dff;--g:#3fb950;--b:#58a6ff;--o:#d29922;--r:#f85149;--p:#bc8cff}
+  *{box-sizing:border-box}
+  body{margin:0;font:14px/1.45 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt)}
+  header{padding:16px 22px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+  h1{margin:0 0 4px;font-size:18px}
+  .sub{color:var(--mut);font-size:12px}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+  input[type=search]{flex:1;min-width:220px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--txt)}
+  button{padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:#1f2430;color:var(--txt);cursor:pointer}
+  button:hover{border-color:var(--acc)}
+  button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .chip{display:flex;gap:6px;align-items:center;padding:4px 10px;border-radius:999px;border:1px solid var(--line);cursor:pointer;user-select:none;font-size:12px}
+  .chip.off{opacity:.35}
+  main{padding:14px 22px 40px}
+  ul{list-style:none;margin:0;padding-left:20px}
+  ul.root{padding-left:0}
+  li{margin:0}
+  .row{display:flex;align-items:center;gap:8px;padding:3px 6px;border-radius:6px;white-space:nowrap}
+  .row:hover{background:#1c2130}
+  .tog{width:16px;text-align:center;color:var(--mut);cursor:pointer;flex:none}
+  .ico{flex:none}
+  .name{cursor:pointer;overflow:hidden;text-overflow:ellipsis}
+  .dir>.row .name{font-weight:600}
+  .host>.row .name{font-weight:700;color:var(--acc)}
+  .meta{color:var(--mut);font-size:12px;margin-left:auto;display:flex;gap:12px;align-items:center}
+  .cnt{color:var(--mut);font-size:12px}
+  .st{font:600 11px/1 ui-monospace,Consolas,monospace;padding:3px 6px;border-radius:5px;color:#0b0d12}
+  .s2{background:var(--g)}.s3{background:var(--b)}.s4{background:var(--o)}.s5{background:var(--r)}.sx{background:var(--mut)}
+  .red{color:var(--b);font-size:12px;overflow:hidden;text-overflow:ellipsis;max-width:380px}
+  a.open{color:var(--mut);text-decoration:none;font-size:12px}
+  a.open:hover{color:var(--acc)}
+  .collapsed>ul{display:none}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+  th{cursor:pointer;position:sticky;top:0;background:var(--panel);color:var(--mut);font-weight:600}
+  td a{color:var(--txt);text-decoration:none;word-break:break-all}
+  td a:hover{color:var(--acc)}
+  .hidden{display:none!important}
+  .empty{color:var(--mut);padding:30px;text-align:center}
+  .toast{position:fixed;bottom:18px;right:18px;background:var(--acc);color:#fff;padding:8px 14px;border-radius:8px;opacity:0;transition:.2s}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <h1>📂 Feroxbuster – http://10.10.10.5</h1>
+  <div class="sub">File: example_scan.txt · Generato: 20/11/2026 08:14 · <span id="tot"></span></div>
+  <div class="bar">
+    <input type="search" id="q" placeholder="Cerca percorso o file… (es. admin, .php, backup)">
+    <button id="vTree" class="on">🌳 Albero</button>
+    <button id="vList">📋 Lista</button>
+    <button id="exp">Espandi tutto</button>
+    <button id="col">Chiudi tutto</button>
+  </div>
+  <div class="chips" id="chips"></div>
+</header>
+<main>
+  <div id="tree"></div>
+  <div id="list" class="hidden"></div>
+  <div id="empty" class="empty hidden">Nessun risultato con questi filtri.</div>
+</main>
+<div class="toast" id="toast">URL copiato</div>
+<script>
+const DATA = [{"name": "http://10.10.10.5", "dir": true, "path": "/", "entry": {"url": "http://10.10.10.5/", "status": 200, "method": "GET", "lines": 42, "words": 120, "size": 1543, "redirect": null}, "children": [{"name": "admin", "dir": true, "path": "/admin", "entry": {"url": "http://10.10.10.5/admin", "status": 301, "method": "GET", "lines": 9, "words": 28, "size": 312, "redirect": "http://10.10.10.5/admin/"}, "children": [{"name": "config", "dir": true, "path": "/admin/config", "entry": {"url": "http://10.10.10.5/admin/config/", "status": 403, "method": "GET", "lines": 9, "words": 28, "size": 277, "redirect": null}, "children": [{"name": "db.bak", "dir": false, "path": "/admin/config/db.bak", "entry": {"url": "http://10.10.10.5/admin/config/db.bak", "status": 200, "method": "GET", "lines": 1, "words": 5, "size": 44, "redirect": null}, "children": []}]}, {"name": "login.php", "dir": false, "path": "/admin/login.php", "entry": {"url": "http://10.10.10.5/admin/login.php", "status": 200, "method": "GET", "lines": 30, "words": 80, "size": 900, "redirect": null}, "children": []}]}, {"name": "api", "dir": true, "path": "/api", "entry": null, "children": [{"name": "v1", "dir": true, "path": "/api/v1", "entry": {"url": "http://10.10.10.5/api/v1/", "status": 401, "method": "GET", "lines": 5, "words": 10, "size": 120, "redirect": null}, "children": [{"name": "users?id=1", "dir": false, "path": "/api/v1/users?id=1", "entry": {"url": "http://10.10.10.5/api/v1/users?id=1", "status": 500, "method": "GET", "lines": 5, "words": 10, "size": 100, "redirect": null}, "children": []}]}]}, {"name": "images", "dir": true, "path": "/images", "entry": {"url": "http://10.10.10.5/images", "status": 301, "method": "GET", "lines": 9, "words": 28, "size": 313, "redirect": "http://10.10.10.5/images/"}, "children": [{"name": "logo.png", "dir": false, "path": "/images/logo.png", "entry": {"url": "http://10.10.10.5/images/logo.png", "status": 200, "method": "GET", "lines": 0, "words": 0, "size": 20480, "redirect": null}, "children": []}]}, {"name": "logout.php", "dir": false, "path": "/logout.php", "entry": {"url": "http://10.10.10.5/logout.php", "status": 302, "method": "GET", "lines": 0, "words": 0, "size": 0, "redirect": "http://10.10.10.5/"}, "children": []}, {"name": "robots.txt", "dir": false, "path": "/robots.txt", "entry": {"url": "http://10.10.10.5/robots.txt", "status": 200, "method": "GET", "lines": 12, "words": 40, "size": 300, "redirect": null}, "children": []}]}];
+
+const $ = s => document.querySelector(s);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const fmtSize = n => n == null ? "" : n < 1024 ? n + " B" : n < 1048576 ? (n/1024).toFixed(1) + " KB" : (n/1048576).toFixed(1) + " MB";
+const stCls = s => s ? "s" + String(s)[0] : "sx";
+const STATUS_INFO = {200:"OK",204:"No Content",301:"Moved",302:"Found",307:"Redirect",308:"Redirect",
+  400:"Bad Request",401:"Unauthorized",403:"Forbidden",404:"Not Found",405:"Not Allowed",500:"Server Error",502:"Bad Gateway",503:"Unavailable"};
+
+// Lista piatta di tutte le voci
+const flat = [];
+(function walk(nodes){ for (const n of nodes){ if (n.entry) flat.push({...n.entry, dir:n.dir}); walk(n.children); } })(DATA);
+
+// Filtri per status
+const statuses = [...new Set(flat.map(e => e.status))].sort((a,b)=>a-b);
+const active = new Set(statuses);
+$("#tot").textContent = flat.length + " risultati · " + DATA.length + " host";
+for (const s of statuses){
+  const c = el("span", "chip");
+  const b = el("span", "st " + stCls(s), s);
+  c.append(b, document.createTextNode((STATUS_INFO[s] || "") + " (" + flat.filter(e=>e.status===s).length + ")"));
+  c.title = "Clicca per mostrare/nascondere";
+  c.onclick = () => { active.has(s) ? active.delete(s) : active.add(s); c.classList.toggle("off"); render(); };
+  $("#chips").append(c);
+}
+
+function toast(){ const t=$("#toast"); t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1000); }
+function copy(u){
+  // navigator.clipboard puo' non funzionare su file:// in alcuni browser: fallback con textarea
+  const fallback = () => { const t = document.createElement("textarea"); t.value = u; t.style.position = "fixed"; t.style.opacity = "0";
+    document.body.append(t); t.select(); try { document.execCommand("copy"); toast(); } catch(_) {} t.remove(); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(u).then(toast, fallback); else fallback();
+}
+
+function matches(n, q){
+  const okStatus = n.entry ? active.has(n.entry.status) : false;
+  const okText = !q || (n.path + " " + (n.entry ? n.entry.url : "")).toLowerCase().includes(q);
+  return okStatus && okText;
+}
+
+// Restituisce il <li> o null se il ramo non ha nulla di visibile
+function buildNode(n, q, depth, isHost, base){
+  if (isHost) base = n.name;
+  const kids = n.children.map(c => buildNode(c, q, depth+1, false, base)).filter(Boolean);
+  const self = matches(n, q);
+  if (!self && !kids.length && !isHost) return null;
+  if (isHost && !self && !kids.length) return null;
+
+  const li = el("li", (isHost ? "host dir" : n.dir ? "dir" : "file"));
+  const row = el("div", "row");
+  const tog = el("span", "tog", n.dir ? (kids.length ? "▾" : "") : "");
+  const ico = el("span", "ico", isHost ? "🌐" : n.dir ? "📁" : fileIcon(n.name));
+  const name = el("span", "name", isHost ? n.name : n.name + (n.dir ? "/" : ""));
+  row.append(tog, ico, name);
+  if (n.dir && kids.length) row.append(el("span", "cnt", "(" + countLeaves(kids) + ")"));
+
+  const meta = el("span", "meta");
+  if (n.entry){
+    const e = n.entry;
+    if (e.redirect){ const r = el("span", "red", "→ " + e.redirect); r.title = e.redirect; meta.append(r); }
+    if (e.size != null) meta.append(el("span", null, fmtSize(e.size)));
+    const st = el("span", "st " + stCls(e.status), e.status ?? "?");
+    st.title = STATUS_INFO[e.status] || "";
+    meta.append(st);
+    const cp = el("a", "open", "📋"); cp.href = "#"; cp.title = "Copia " + e.url;
+    cp.onclick = ev => { ev.preventDefault(); ev.stopPropagation(); copy(e.url); };
+    meta.append(cp);
+    const a = el("a", "open", "↗"); a.href = e.url; a.target = "_blank"; a.rel = "noopener noreferrer"; a.title = "Apri " + e.url;
+    meta.append(a);
+    name.title = e.url + "  (doppio clic = copia URL)";
+    name.ondblclick = ev => { ev.stopPropagation(); copy(e.url); };
+  } else {
+    const u = base + n.path + (n.dir && !n.path.endsWith("/") ? "/" : "");
+    meta.append(el("span", "cnt", "non trovato direttamente"));
+    const cp = el("a", "open", "📋"); cp.href = "#"; cp.title = "Copia " + u;
+    cp.onclick = ev => { ev.preventDefault(); ev.stopPropagation(); copy(u); };
+    const a = el("a", "open", "↗"); a.href = u; a.target = "_blank"; a.rel = "noopener noreferrer"; a.title = "Apri " + u;
+    meta.append(cp, a);
+  }
+  row.append(meta);
+  li.append(row);
+
+  if (kids.length){
+    const ul = el("ul"); kids.forEach(k => ul.append(k)); li.append(ul);
+    const toggle = () => { li.classList.toggle("collapsed"); tog.textContent = li.classList.contains("collapsed") ? "▸" : "▾"; };
+    tog.onclick = toggle; name.onclick = toggle;
+    if (!q && depth >= 2) { li.classList.add("collapsed"); tog.textContent = "▸"; }
+  }
+  return li;
+}
+function countLeaves(lis){ return lis.reduce((s, li) => s + 1, 0); }
+function fileIcon(n){
+  const x = n.toLowerCase();
+  if (/\.(php|asp|aspx|jsp|cgi|py|pl|rb)(\?|$)/.test(x)) return "⚙️";
+  if (/\.(zip|tar|gz|rar|7z|bak|old|sql|db|backup)(\?|$)/.test(x)) return "📦";
+  if (/\.(txt|log|md|xml|json|yml|yaml|conf|config|ini|env)(\?|$)/.test(x)) return "📝";
+  if (/\.(png|jpe?g|gif|svg|ico|webp)(\?|$)/.test(x)) return "🖼️";
+  if (/\.(js|css|map)(\?|$)/.test(x)) return "🧩";
+  if (/\.(html?)(\?|$)/.test(x)) return "🌐";
+  return "📄";
+}
+
+let sortKey = "url", sortDir = 1;
+function renderList(q){
+  const rows = flat.filter(e => active.has(e.status) && (!q || e.url.toLowerCase().includes(q)))
+    .sort((a,b) => { const x=a[sortKey], y=b[sortKey]; return (x>y?1:x<y?-1:0) * sortDir; });
+  const t = el("table");
+  const hr = el("tr");
+  [["status","Status"],["method","Metodo"],["size","Dimensione"],["lines","Righe"],["words","Parole"],["url","URL"]].forEach(([k,l]) => {
+    const th = el("th", null, l + (sortKey===k ? (sortDir>0?" ▲":" ▼") : ""));
+    th.onclick = () => { sortDir = sortKey===k ? -sortDir : 1; sortKey = k; render(); };
+    hr.append(th);
+  });
+  t.append(hr);
+  for (const e of rows){
+    const tr = el("tr");
+    const st = el("td"); st.append(el("span", "st " + stCls(e.status), e.status)); tr.append(st);
+    tr.append(el("td", null, e.method), el("td", null, fmtSize(e.size)), el("td", null, e.lines ?? ""), el("td", null, e.words ?? ""));
+    const td = el("td");
+    const cp = el("a", "open", "📋 "); cp.href = "#"; cp.title = "Copia URL";
+    cp.onclick = ev => { ev.preventDefault(); copy(e.url); }; td.append(cp);
+    const a = el("a", null, e.url + (e.redirect ? "  →  " + e.redirect : ""));
+    a.href = e.url; a.target = "_blank"; a.rel = "noopener noreferrer"; td.append(a); tr.append(td);
+    t.append(tr);
+  }
+  $("#list").replaceChildren(t);
+  return rows.length;
+}
+
+let view = "tree";
+function render(){
+  const q = $("#q").value.trim().toLowerCase();
+  let n;
+  if (view === "tree"){
+    const ul = el("ul", "root");
+    DATA.forEach(h => { const li = buildNode(h, q, 0, true); if (li) ul.append(li); });
+    $("#tree").replaceChildren(ul);
+    n = ul.children.length;
+  } else n = renderList(q);
+  $("#empty").classList.toggle("hidden", n > 0);
+}
+
+$("#q").oninput = render;
+$("#vTree").onclick = () => { view="tree"; $("#vTree").classList.add("on"); $("#vList").classList.remove("on"); $("#tree").classList.remove("hidden"); $("#list").classList.add("hidden"); render(); };
+$("#vList").onclick = () => { view="list"; $("#vList").classList.add("on"); $("#vTree").classList.remove("on"); $("#list").classList.remove("hidden"); $("#tree").classList.add("hidden"); render(); };
+$("#exp").onclick = () => document.querySelectorAll("#tree li.collapsed").forEach(li => { li.classList.remove("collapsed"); li.querySelector(".tog").textContent="▾"; });
+$("#col").onclick = () => document.querySelectorAll("#tree li.dir:not(.host)").forEach(li => { if (li.querySelector("ul")){ li.classList.add("collapsed"); li.querySelector(".tog").textContent="▸"; } });
+render();
+</script>
+</body>
+</html>
