@@ -90,12 +90,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
-**3. Done.** You now have:
+**3. Done.** The program is copied to `~/.local/share/ferox2html`, so you can move or delete the downloaded folder. You now have:
 
 | What | How to use it |
 |---|---|
 | 🖱️ **Ferox2html icon** in the applications menu and on the Desktop | double-click it → pick your scan file → the report opens in the browser |
-| 📂 **Open with** on scan files | right-click `feroxbuster_scan.txt` → **Open with → Ferox2html** |
+| 📂 **Open with** on a scan file | right-click `feroxbuster_scan.txt` → **Open With Other Application → Ferox2html** |
 | ⌨️ **`ferox2html` command** in the terminal | `ferox2html ~/Desktop/feroxbuster_scan.txt` |
 
 **If something doesn't work**
@@ -103,7 +103,8 @@ chmod +x install.sh
 - The Desktop icon asks *"Untrusted application launcher"* → click **Launch Anyway** / **Mark Executable** (only the first time).
 - The file picker doesn't open → `sudo apt install python3-tk`
 - `ferox2html: command not found` → add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc` and open a new terminal (the installer tells you if it's needed).
-- You moved the project folder → run `./install.sh` again.
+- Ferox2html opens your `.txt` files, the icon disappeared or double-click does nothing (older versions of the installer) → download the latest version and run `./install.sh` again: it repairs everything and gives your text editor back.
+- Ferox2html never becomes the default app for any file type: your text files keep opening in your editor.
 
 **Uninstall:** `./install.sh --uninstall` (your scans and reports are not touched).
 
@@ -252,12 +253,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
-**3. Fatto.** Adesso hai:
+**3. Fatto.** Il programma viene copiato in `~/.local/share/ferox2html`, quindi puoi spostare o cancellare la cartella scaricata. Adesso hai:
 
 | Cosa | Come si usa |
 |---|---|
 | 🖱️ **Icona Ferox2html** nel menu applicazioni e sul Desktop | doppio clic → scegli il file della scansione → il report si apre nel browser |
-| 📂 **Apri con** sui file delle scansioni | tasto destro su `feroxbuster_scan.txt` → **Apri con → Ferox2html** |
+| 📂 **Apri con** su un file di scansione | tasto destro su `feroxbuster_scan.txt` → **Apri con un'altra applicazione → Ferox2html** |
 | ⌨️ **Comando `ferox2html`** nel terminale | `ferox2html ~/Desktop/feroxbuster_scan.txt` |
 
 **Se qualcosa non va**
@@ -265,7 +266,8 @@ chmod +x install.sh
 - L'icona sul Desktop chiede *"Untrusted application launcher"* → clicca **Launch Anyway** / **Mark Executable** (solo la prima volta).
 - Non si apre la finestra per scegliere il file → `sudo apt install python3-tk`
 - `ferox2html: command not found` → aggiungi `export PATH="$HOME/.local/bin:$PATH"` in `~/.zshrc` e apri un nuovo terminale (l'installer ti avvisa se serve).
-- Hai spostato la cartella del progetto → rilancia `./install.sh`.
+- Ferox2html apre i tuoi file `.txt`, l'icona è sparita o il doppio clic non fa niente (versioni vecchie dell'installer) → scarica l'ultima versione e rilancia `./install.sh`: ripara tutto e ti rimette l'editor di testo.
+- Ferox2html non diventa mai l'app predefinita per nessun tipo di file: i tuoi file di testo continuano ad aprirsi nel tuo editor.
 
 **Disinstallare:** `./install.sh --uninstall` (le tue scansioni e i report non vengono toccati).
 
