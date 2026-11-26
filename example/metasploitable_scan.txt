@@ -1,0 +1,48 @@
+200      GET        42l       120w       891c http://192.168.1.50/
+301      GET         9l        28w       316c http://192.168.1.50/dvwa => http://192.168.1.50/dvwa/
+302      GET         0l         0w         0c http://192.168.1.50/dvwa/ => login.php
+200      GET        66l       150w      1523c http://192.168.1.50/dvwa/login.php
+301      GET         9l        28w       323c http://192.168.1.50/dvwa/config => http://192.168.1.50/dvwa/config/
+200      GET         1l         5w       576c http://192.168.1.50/dvwa/config/config.inc.php.bak
+301      GET         9l        28w       321c http://192.168.1.50/dvwa/docs => http://192.168.1.50/dvwa/docs/
+200      GET       640l      4100w    505921c http://192.168.1.50/dvwa/docs/DVWA_v1.3.pdf
+301      GET         9l        28w       332c http://192.168.1.50/dvwa/vulnerabilities => http://192.168.1.50/dvwa/vulnerabilities/
+302      GET         0l         0w         0c http://192.168.1.50/dvwa/vulnerabilities/sqli/ => ../../login.php
+302      GET         0l         0w         0c http://192.168.1.50/dvwa/vulnerabilities/xss_r/ => ../../login.php
+302      GET         0l         0w         0c http://192.168.1.50/dvwa/vulnerabilities/upload/ => ../../login.php
+200      GET       690l      5400w     33107c http://192.168.1.50/dvwa/COPYING.txt
+200      GET       140l       620w      4934c http://192.168.1.50/dvwa/README.txt
+200      GET         4l         8w        26c http://192.168.1.50/dvwa/robots.txt
+302      GET         0l         0w         0c http://192.168.1.50/dvwa/setup.php => login.php
+302      GET         0l         0w         0c http://192.168.1.50/dvwa/security.php => login.php
+301      GET         9l        28w       321c http://192.168.1.50/mutillidae => http://192.168.1.50/mutillidae/
+200      GET       880l      2400w     44612c http://192.168.1.50/mutillidae/index.php
+301      GET         9l        28w       330c http://192.168.1.50/mutillidae/classes => http://192.168.1.50/mutillidae/classes/
+200      GET        95l       300w      3600c http://192.168.1.50/mutillidae/classes/MySQLHandler.php
+301      GET         9l        28w       331c http://192.168.1.50/mutillidae/includes => http://192.168.1.50/mutillidae/includes/
+200      GET        20l        60w       800c http://192.168.1.50/mutillidae/includes/config.inc
+301      GET         9l        28w       332c http://192.168.1.50/mutillidae/passwords => http://192.168.1.50/mutillidae/passwords/
+200      GET        16l        32w       428c http://192.168.1.50/mutillidae/passwords/accounts.txt
+200      GET       700l      1900w     34514c http://192.168.1.50/mutillidae/captured-data.txt
+200      GET        30l        80w      1300c http://192.168.1.50/mutillidae/phpinfo.php
+200      GET        12l        30w       509c http://192.168.1.50/mutillidae/credits.php
+200      GET         9l        22w       450c http://192.168.1.50/mutillidae/footer.php
+301      GET         9l        28w       329c http://192.168.1.50/mutillidae/styles => http://192.168.1.50/mutillidae/styles/
+301      GET         9l        28w       332c http://192.168.1.50/mutillidae/javascript => http://192.168.1.50/mutillidae/javascript/
+301      GET         9l        28w       321c http://192.168.1.50/phpMyAdmin => http://192.168.1.50/phpMyAdmin/
+200      GET       110l       420w      4145c http://192.168.1.50/phpMyAdmin/index.php
+200      GET        40l        90w      2120c http://192.168.1.50/phpMyAdmin/changelog.php
+200      GET        60l       220w      8800c http://192.168.1.50/phpMyAdmin/ChangeLog
+301      GET         9l        28w       317c http://192.168.1.50/twiki => http://192.168.1.50/twiki/
+200      GET        30l        90w       782c http://192.168.1.50/twiki/index.html
+301      GET         9l        28w       321c http://192.168.1.50/twiki/bin => http://192.168.1.50/twiki/bin/
+200      GET       210l       980w      9877c http://192.168.1.50/twiki/bin/view
+200      GET         4l        10w       120c http://192.168.1.50/twiki/license.txt
+301      GET         9l        28w       315c http://192.168.1.50/dav => http://192.168.1.50/dav/
+200      GET        14l        40w       690c http://192.168.1.50/dav/
+301      GET         9l        28w       316c http://192.168.1.50/test => http://192.168.1.50/test/
+200      GET        10l        30w       450c http://192.168.1.50/test/
+200      GET      1500l      6000w     48003c http://192.168.1.50/phpinfo.php
+200      GET        20l        40w       600c http://192.168.1.50/index.php
+500      GET         5l        10w       612c http://192.168.1.50/server-status
+200      GET         9l        20w       301c http://192.168.1.50/backup.zip

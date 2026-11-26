@@ -49,13 +49,26 @@
 
 ## 📸 Screenshots
 
+> Taken against **Metasploitable 2**, a deliberately vulnerable lab VM.
+
+### 🌳 Tree view
+Visited links in purple, critical files with the red skull, notes next to the files.
+
 <img src="screenshots/tree.png" alt="Tree view" width="900">
 
-*Run it with no arguments and pick the file from a window:*
+| 💀 Only critical files | 📊 Statistics |
+|:---:|:---:|
+| <img src="screenshots/critical.png" width="440"> | <img src="screenshots/stats.png" width="440"> |
+| **🆚 Compare two scans** (NEW / DISAPPEARED) | **📋 List view** |
+| <img src="screenshots/compare.png" width="440"> | <img src="screenshots/list.png" width="440"> |
+| **📝 Notes** | **🔁 Change IP address** |
+| <img src="screenshots/note.png" width="440"> | <img src="screenshots/ipchange.png" width="440"> |
+| **⬇️ Export URLs / curl / progress** | **☀️ Light theme** |
+| <img src="screenshots/export.png" width="440"> | <img src="screenshots/light.png" width="440"> |
+
+**🖱️ Double-click the icon and pick the file:**
 
 <img src="screenshots/picker.png" alt="File picker" width="480">
-
-> Screenshots taken against **Metasploitable 2**, a deliberately vulnerable lab VM.
 
 ## 📥 Installation
 
@@ -64,8 +77,8 @@
 **1. Download the project**
 
 ```bash
-git clone https://github.com/SangueFreddo/Ferox2html-FeroxbusterTree.git
-cd Ferox2html-FeroxbusterTree
+git clone https://github.com/SangueFreddo/Ferox2html---FeroxbusterTree.git
+cd Ferox2html---FeroxbusterTree
 ```
 
 No git? On GitHub click **Code → Download ZIP**, extract it and open a terminal inside the folder.
@@ -158,10 +171,11 @@ ferox2html ~/Desktop/feroxbuster_scan.txt
 | Pick the file(s) from a window | `python3 ferox2html.py` (no arguments, multiple selection allowed) |
 | Drag & drop (Windows) | drag scan files onto the **Ferox2html** icon |
 
-Try it right away with the included example:
+Try it right away with the included Metasploitable 2 examples:
 
 ```bash
-python3 ferox2html.py example/example_scan.txt
+python3 ferox2html.py example/metasploitable_scan.txt
+python3 ferox2html.py example/metasploitable_scan.txt --compare example/metasploitable_old.txt
 ```
 
 ## 🖱️ Using the report
@@ -225,8 +239,8 @@ Run feroxbuster **only against systems you own or are explicitly authorised to t
 **1. Scarica il progetto**
 
 ```bash
-git clone https://github.com/SangueFreddo/Ferox2html-FeroxbusterTree.git
-cd Ferox2html-FeroxbusterTree
+git clone https://github.com/SangueFreddo/Ferox2html---FeroxbusterTree.git
+cd Ferox2html---FeroxbusterTree
 ```
 
 Senza git: su GitHub clicca **Code → Download ZIP**, estrai la cartella e apri un terminale al suo interno.
@@ -277,6 +291,15 @@ ferox2html ~/Desktop/feroxbuster_scan.txt
 ```
 
 Si crea `feroxbuster_scan.html` accanto alla scansione e si apre nel browser. Senza installer: `python3 ferox2html.py ~/Desktop/feroxbuster_scan.txt`.
+
+Per provarlo subito ci sono due scansioni d'esempio di Metasploitable 2:
+
+```bash
+python3 ferox2html.py example/metasploitable_scan.txt
+python3 ferox2html.py example/metasploitable_scan.txt --compare example/metasploitable_old.txt
+```
+
+Gli screenshot qui sopra mostrano tutte le funzioni.
 
 | Comando | Cosa fa |
 |---|---|

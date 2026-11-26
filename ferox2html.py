@@ -241,7 +241,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .card h3{margin:0 0 6px;font-size:12px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
   .kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:1px 0}
   .kv span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .kv b{font-variant-numeric:tabular-nums}
+  .kv b{font-variant-numeric:tabular-nums;white-space:nowrap}
   main{padding:14px 22px 40px}
   ul{list-style:none;margin:0;padding-left:20px}
   ul.root{padding-left:0}
